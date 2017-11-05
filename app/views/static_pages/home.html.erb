@@ -1,0 +1,82 @@
+<% if current_user.nil? %>
+	<div class="center jumbotron">
+	  <h1>Welcome to Capstone Library</h1>
+
+	  <h2>
+	    This is the home page for the
+	    <a href="http://www.railstutorial.org/">Capstone Library</a>
+	    application.
+	  </h2>
+
+	  <%= link_to "Sign up now!", signup_path , class: "btn btn-lg btn-primary" %>
+	</div>
+<% else %>
+	<% if current_user.role == "user" %>
+		<h3>Borrowed books</h3>
+		<table class="books-table" id="books-table">
+			<tr id="table-header">
+				<th class="col-name">Title</th>
+				<th class="col-name">Author</th>
+				<th class="col-name">Due date</th>
+				<th class="col-name" colspan="2">Action</th>
+			</tr>
+			<% @borrowings.each do |i| %>
+				<tr>
+					<th><%= Book.find_by(id: i.book_id).name %></th>
+					<th><%= Book.find_by(id: i.book_id).author %></th>
+					<th><%= i.due_date %></th>
+					<th>
+						<% if !i.verified? %>
+              <%= form_for(i, html: { method: :delete }) do |f| %>
+							  <%= hidden_field_tag :user_id, current_user.id %>
+							  <%= hidden_field_tag :book_id, current_book.id %>
+							  <%= f.submit "Cancel", class: "btn btn-warning cancel-button" %>
+							<% end %>
+            <% else %>
+              <%= form_for(current_user.borrowings.find_by(user_id: current_user.id, book_id: Book.find_by(id: i.book_id).id), html: { method: :patch }, class: 'form-inline', style: 'display:inline !important;') do |f| %>
+							  <%= hidden_field_tag :user_id, current_user.id %>
+							  <%= hidden_field_tag :book_id, Book.find_by(id: i.book_id).id %>
+							  <input type="text" name="extension_day" class="extend-input">
+							  <%= f.submit "Extend", class: "btn btn-info extend-button" %>
+							<% end %>
+            <% end %>
+					</th>
+				</tr>
+			<% end %>
+		</table>
+	<% else %>
+		<h3>Current Requests</h3>
+		<table class="books-table" id="books-table">
+			<tr id="table-header">
+				<th class="col-name">Title</th>
+				<th class="col-name">Author</th>
+				<th class="col-name">User</th>
+				<th class="col-name">Due date</th>
+				<th class="col-name">Request</th>
+				<th class="col-name">Action</th>
+			</tr>
+			<% @borrowings.each do |i| %>
+				<tr>
+					<% book = Book.find_by(id: i.book_id) %>
+					<th><%= link_to book.name, book %></th>
+					<th><%= book.author %></th>
+					<th><%= User.find_by(id: i.user_id).name %></th>
+					<th><%= i.due_date %></th>
+					<th><%= i.request %></th>
+					<th>
+						<%= form_for(i, url: approve_path, html: { method: :patch }) do |f| %>
+							<%= hidden_field_tag :id, i.id %>
+						  <%= f.submit "Approve", class: "btn btn-success approve-button" %>
+						<% end %>
+					</th>
+					<th>
+						<%= form_for(i, url: deny_path, html: { method: :delete }) do |f| %>
+							<%= hidden_field_tag :id, i.id %>
+						  <%= f.submit "Deny", class: "btn btn-danger deny-button" %>
+						<% end %>
+					</th>
+				</tr>
+			<% end %>
+		</table>
+	<% end %>
+<% end %>

@@ -1,0 +1,69 @@
+<% provide(:title, @book.name) %>
+<div class="book-details">
+  <div class="row">
+    <div class="col-md-4 col-sm-4">
+      <section class="book-cover">
+        <div class="rectangle"></div>
+      </section>
+      <% if current_user %>
+        <% if current_user.librarian? %>
+          <section class="librarian-control">
+            <%= link_to "Edit this book", edit_book_path %>
+          </section>
+        <% else %>
+          <div id="borrow_form">
+            <% if borrowing = Borrowing.find_by(user_id: current_user.id, book_id: @book.id) %>
+              <% if !borrowing.verified? %>
+                <%= render 'cancel' %>
+              <% else %>
+                <%= render 'extend' %>
+              <% end %>
+            <% else %>
+              <% if current_book.availability > 0 %>
+                <%= render 'borrow' %>
+              <% else %>
+                No book available
+              <% end %>
+            <% end %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="col-md-8 col-sm-8">
+      <section class="book-info">
+        <h3 class="book-detail-title"><%= @book.name %></h3>
+        by <h4><%= @book.author %></h4>
+      </section>
+      <section class="col-md-6 col-sm-6">
+        Genre : <%= @book.genre %><br>
+        Publisher : <%= @book.publisher %><br>
+        Publication Date : <%= @book.publication_date.strftime("%b %e %Y") %>
+      </section>
+      <section class="col-md-6 col-sm-6">
+        Number of pages : <%= @book.pages %><br>
+        Available : <%= @book.availability %>
+      </section>
+      <section class="book-introduction">
+        <p><%= @book.description.to_s %></p>
+      </section>
+    </div>
+  </div>
+</div>
+<% if current_user && current_user.role == "librarian" %>
+  <div class="borrowing-status">
+    <% if @borrowings.empty? %>
+      No book borrowed
+    <% else %>
+      <table class="books-table" id="books-table">
+        <tr id="table-header">
+          <th class="col-name">User</th>
+          <th class="col-name">Due date</th>
+        </tr>
+        <% @borrowings.each do |i| %>
+          <th><%= User.find_by(id: i.user_id).name %></th>
+          <th><%= i.due_date %></th>
+        <% end %>
+      </table>
+    <% end %>
+  </div>
+<% end %>

@@ -1,0 +1,22 @@
+<% provide(:title, @user.name) %>
+<div class="row">
+  <div class="col-md-4">
+    <section class="user_info">
+      <h1>
+        <%= @user.name %><br>
+      </h1>
+      <h2>
+        <%= @user.email %><br>
+        <%= @user.birthday unless @user.birthday.nil? %><br>
+        <%= @user.address unless @user.address.nil? %><br>
+      </h2>
+    </section>
+  </div>
+  <% if @user.librarian? %>
+    <div class="librarian-control">
+      <%= link_to "Add new book", new_book_path %><br>
+      <%= link_to "Show all borrowings", borrowings_path %><br>
+      <%= link_to "Show all requests", root_path %><br>
+    </div>
+  <% end %>
+</div>
