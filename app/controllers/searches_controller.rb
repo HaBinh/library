@@ -15,9 +15,8 @@ class SearchesController < ApplicationController
 		args << "%"+params[:search][:author]+"%"
 		args << params[:search][:dewey_code]+"%"
 		args << "%"+params[:search][:publisher]+"%"
-		@books = Book.advanced_search(args)
-		@searches = @books.paginate(page: params[:page])
-		if @searches.empty?
+		@books = Book.advanced_search(args).paginate(page: params[:page])
+		if @books.empty?
 			flash[:info] = "No book found"
 			redirect_to advanced_search_path
 		else
@@ -34,8 +33,7 @@ class SearchesController < ApplicationController
 		args << params[:search][:dewey_code]+"%"
 		args << "%"+params[:search][:publisher]+"%"
 		@books = Book.advanced_search(args)
-		@searches = @books.paginate(page: params[:page])
-		if @searches.empty?
+		if @books.empty?
 			flash[:info] = "No book found"
 			redirect_to advanced_search_path
 		else
