@@ -32,16 +32,16 @@
     <div class="col-md-8 col-sm-8">
       <section class="book-info">
         <h3 class="book-detail-title"><%= @book.name %></h3>
-        by <h4><%= @book.author %></h4>
+        <h4><small>by</small> <%= @book.author %></h4>
       </section>
       <section class="col-md-6 col-sm-6">
-        Genre : <%= @book.genre %><br>
-        Publisher : <%= @book.publisher %><br>
-        Publication Date : <%= @book.publication_date.strftime("%b %e %Y") %>
+        <span class="label label-primary">Genre</span> : <%= @book.genre %><br>
+        <span class="label label-primary">Publisher</span> : <%= @book.publisher %><br>
+        <span class="label label-primary">Publication Date</span> : <%= @book.publication_date.strftime("%b %e %Y") %>
       </section>
       <section class="col-md-6 col-sm-6">
-        Number of pages : <%= @book.pages %><br>
-        Available : <%= @book.availability %>
+        <span class="label label-primary">Number of pages</span> : <%= @book.pages %><br>
+        <span class="label label-primary">Available</span> : <%= @book.availability %>
       </section>
       <section class="book-introduction">
         <p><%= @book.description.to_s %></p>
@@ -50,14 +50,15 @@
   </div>
 </div>
 <% if current_user && current_user.role == "librarian" %>
-  <div class="borrowing-status">
+  <div class="col-sm-8 col-sm-offset-4 borrowing-status">
     <% if @borrowings.empty? %>
-      No book borrowed
+      <span class="label label-warning">No book borrowed</span>
     <% else %>
-      <table class="books-table" id="books-table">
+      <span class="label label-success">Borrower</span>
+      <table class="table table-striped" id="books-table">
         <tr id="table-header">
-          <th class="col-name">User</th>
-          <th class="col-name">Due date</th>
+          <th><strong>User</strong></th>
+          <th><strong>Due date</strong></th>
         </tr>
         <% @borrowings.each do |i| %>
           <th><%= User.find_by(id: i.user_id).name %></th>

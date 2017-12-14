@@ -6,9 +6,9 @@
         <%= @user.name %><br>
       </h1>
       <h2>
-        <%= @user.email %><br>
-        <%= @user.birthday unless @user.birthday.nil? %><br>
-        <%= @user.address unless @user.address.nil? %><br>
+        <span class="label label-success">Email</span> <%= @user.email %><br>
+        <span class="label label-success">Birthday</span> <%= @user.birthday unless @user.birthday.nil? %><br>
+        <span class="label label-success">Address</span> <%= @user.address unless @user.address.nil? %><br>
       </h2>
     </section>
   </div>
