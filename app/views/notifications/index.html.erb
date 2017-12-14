@@ -1,8 +1,8 @@
 <% provide(:title, 'Notifications') %>
-<table class="notifications-table">
+<table class="table table-striped notifications-table">
 	<tr id="table-header">
-		<th class="col-name">Content</th>
-		<th class="col-name">Time</th>
+		<th><strong>Content</strong></th>
+		<th><strong>Time</strong></th>
 	</tr>
 	<% unless @unread.compact.empty? %>
 		<% @unread.each do |n| %>

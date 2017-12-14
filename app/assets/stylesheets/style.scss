@@ -157,3 +157,50 @@ input.extend-input {
   display: inline;
   width: 100px;
 }
+/* Sửa file */
+#logo{
+  color: red;
+}
+#logo:hover{
+  color: blue;
+}
+.navbar-default .navbar-nav > li > a{
+  color: #000;
+}
+.navbar-default .navbar-nav > li > a:hover{
+  color: red;
+  cursor: pointer;
+}
+.footer{
+  margin-top: 15px;
+  text-align: center;
+}
+.container .jumbotron, .container-fluid .jumbotron{
+  background: url("https://i2.wp.com/targetgdpi.com/wp-content/uploads/2014/04/come-risparmiare-sui-libri-di-scuola.jpg?resize=1000%2C300") no-repeat center center border-box;
+}
+.center h1,.center h2{
+  color: #fff;
+}
+h3{
+  color: #fff;
+  background: #4cad24;
+  display: inline-block;
+  padding: 5px 11px;
+  border-radius: 11px;
+}
+h4{
+  display: inline-block;
+}
+h2{
+  text-align: left;
+}
+h2 span{
+  margin: 1px 0;
+  width: 19%;
+  display: inline-block!important;
+}
+.borrowing-status span{
+  padding: 6px;
+  margin-bottom: 10px;
+  display: inline-block;
+}

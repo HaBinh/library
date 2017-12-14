@@ -1,8 +1,13 @@
 <% provide(:title, "Log in") %>
-<h1>Log in</h1>
+<div class="modal fade" id="modal" role="dialog">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" data-dismiss="modal">&times;</button>
+        <h1 class="modal-title">Log in</h1>
+      </div>
+      <div class="modal-body">
 
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
     <%= form_for(:session, url: login_path) do |f| %>
 
       <%= f.label :email %>
@@ -19,7 +24,10 @@
       
       <%= f.submit "Log in", class: "btn btn-primary" %>
     <% end %>
-
+      </div>
+      <div class="modal-footer">
     <p>New user? <%= link_to "Sign up", signup_path %></p>
+        </div>
   </div>
+</div>
 </div>

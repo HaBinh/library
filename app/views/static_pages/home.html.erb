@@ -6,19 +6,19 @@
 	    This is the home page for the
 	    <a href="http://www.railstutorial.org/">Capstone Library</a>
 	    application.
-	  </h2>
+		</h2>
 
 	  <%= link_to "Sign up now!", signup_path , class: "btn btn-lg btn-primary" %>
 	</div>
 <% else %>
 	<% if current_user.role == "user" %>
 		<h3>Borrowed books</h3>
-		<table class="books-table" id="books-table">
+		<table class="table table-striped" id="books-table">
 			<tr id="table-header">
-				<th class="col-name">Title</th>
-				<th class="col-name">Author</th>
-				<th class="col-name">Due date</th>
-				<th class="col-name" colspan="2">Action</th>
+				<th><strong>Title</strong></th>
+				<th><strong>Author</strong></th>
+				<th><strong>Due date</strong></th>
+				<th colspan="2"><strong>Action</strong></th>
 			</tr>
 			<% @borrowings.each do |i| %>
 				<tr>
@@ -29,7 +29,7 @@
 						<% if !i.verified? %>
               <%= form_for(i, html: { method: :delete }) do |f| %>
 							  <%= hidden_field_tag :user_id, current_user.id %>
-							  <%= hidden_field_tag :book_id, current_book.id %>
+							  <!--hidden_field_tag :book_id, current_book.id -->
 							  <%= f.submit "Cancel", class: "btn btn-warning cancel-button" %>
 							<% end %>
             <% else %>
@@ -46,14 +46,14 @@
 		</table>
 	<% else %>
 		<h3>Current Requests</h3>
-		<table class="books-table" id="books-table">
+		<table class="table table-striped" id="books-table">
 			<tr id="table-header">
-				<th class="col-name">Title</th>
-				<th class="col-name">Author</th>
-				<th class="col-name">User</th>
-				<th class="col-name">Due date</th>
-				<th class="col-name">Request</th>
-				<th class="col-name">Action</th>
+				<th><strong>Title</strong></th>
+				<th><strong>Author</strong></th>
+				<th><strong>User</strong></th>
+				<th><strong>Due date</strong></th>
+				<th><strong>Request</strong></th>
+				<th colspan="2"><strong>Action</strong></th>
 			</tr>
 			<% @borrowings.each do |i| %>
 				<tr>
