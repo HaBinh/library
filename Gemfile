@@ -64,7 +64,6 @@ group :development do
 end
 
 group :production do
-  # gem 'sqlite3', '1.3.13'
   gem 'pg',   '0.18.4'
 end
 
