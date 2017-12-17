@@ -100,13 +100,6 @@ class BorrowingsController < ApplicationController
 		redirect_to '/'
 	end
 
-<<<<<<< HEAD
-=======
-	def index
-		@borrowings = Borrowing.where(verified: true)
-	end
-
->>>>>>> 9b0ae87b5f283f4e5262948403b5c5954b124fdb
 	def find
 		@borrowings = Borrowing.all.map { |b| b if b.verified? && b.book_id == params[:find_borrowing].to_i }
 		unless @borrowings.compact.empty?
