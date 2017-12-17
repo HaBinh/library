@@ -2,6 +2,10 @@ class BorrowingsController < ApplicationController
 	before_action :logged_in_user
 	before_action :librarian_user, only: [:index]
 
+	def index
+		@borrowings = Borrowing.where(verified: true)
+	end
+
 	def create
 		@book = Book.find(params[:book_id])
 		@user = current_user
@@ -94,10 +98,6 @@ class BorrowingsController < ApplicationController
 			borrowing.update_attributes(request: nil)
 		end
 		redirect_to '/'
-	end
-
-	def index
-		@borrowings = Borrowing.all.map { |b| b if b.verified? }
 	end
 
 	def find
