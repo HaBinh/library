@@ -10,10 +10,10 @@
       <%= f.text_field :name, class: 'form-control' %>
 
       <%= f.label :author %>
-      <%= f.email_field :author, class: 'form-control' %>
+      <%= f.text_field :author, class: 'form-control' %>
 
       <%= f.label :dewey_code %>
-      <%= f.email_field :dewey_code, class: 'form-control' %>
+      <%= f.number_field :dewey_code, class: 'form-control' %>
 
       <%= f.label :publisher %>
       <%= f.text_field :publisher, class: 'form-control' %>
@@ -22,10 +22,10 @@
       <%= f.date_field :publication_date, class: 'form-control' %>
 
       <%= f.label :pages %>
-      <%= f.text_field :pages, class: 'form-control' %>
+      <%= f.number_field :pages, class: 'form-control' %>
 
       <%= f.label :availability %>
-      <%= f.text_field :availability, class: 'form-control' %>
+      <%= f.number_field :availability, class: 'form-control' %>
 
       <%= f.label :description %>
       <%= f.text_area :description %>
