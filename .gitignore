@@ -19,4 +19,3 @@ db/schema.rb
 db/development.sqlite3
 .idea
 coverage
-Gemfile.lock
