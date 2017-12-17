@@ -97,7 +97,7 @@ class BorrowingsController < ApplicationController
 	end
 
 	def index
-		@borrowings = Borrowing.all.map { |b| b if b.verified? }
+		@borrowings = Borrowing.where(verified: true)
 	end
 
 	def find
