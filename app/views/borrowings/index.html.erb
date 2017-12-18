@@ -1,6 +1,6 @@
 <% provide(:title, 'Current Borrowing') %>
 <%= form_tag(controller: "borrowings", action: "find", method: "post") do %>
-	<%= text_field_tag :find_borrowing, nil, placeholder: "Input book id" %>
+	<%= number_field_tag :find_borrowing, nil, placeholder: "Input book id" %>
 	<% submit_tag "Find" %>
 <% end %>
 <table class="borrowings-table">

@@ -101,12 +101,15 @@ class BorrowingsController < ApplicationController
 	end
 
 	def find
-		@borrowings = Borrowing.all.map { |b| b if b.verified? && b.book_id == params[:find_borrowing].to_i }
+		@borrowings = Borrowing.where(verified: true)
+		# byebug
+		@borrowings = @borrowings.where( ["book_id LIKE ?", params[:find_borrowing]] )
+		
 		unless @borrowings.compact.empty?
 			flash[:success] = "Borrowing found"
 			render :index
 		else
-			flash[:info] = "No borrowing found"
+			flash[:danger] = "No borrowing found"
 			@borrowings = Borrowing.all.map { |b| b if b.verified? }
 			redirect_to borrowings_path
 		end
