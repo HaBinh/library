@@ -12,10 +12,14 @@
 }
 
 .rectangle {
-	width: 300px;
+	width: 100%;
   height: 400px;
-  background: gray;
+  background: linear-gradient(to top, #f05053, #e1eec3);
   margin-bottom: 30px;
+}
+
+.rectangle h2 {
+	line-height: 400px;
 }
 
 .book-detail-title {

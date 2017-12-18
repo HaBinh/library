@@ -179,8 +179,9 @@ input.extend-input {
   text-align: center;
 }
 .container .jumbotron, .container-fluid .jumbotron{
-  padding: 100px 0;
-  background: url("./images/back.jpg") no-repeat center center border-box fixed;
+  height: 680px;
+  padding: 120px 0;
+  background: url("./images/back.jpg") no-repeat center center border-box;
   background-size: 100% 100%;
 }
 .center{
