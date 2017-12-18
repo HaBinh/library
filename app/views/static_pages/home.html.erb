@@ -1,4 +1,10 @@
 <% if current_user.nil? %>
+	<style>
+	.navbar-inverse{
+		background: none;
+		border-color: transparent;
+	}
+	</style>
 	<div class="center jumbotron">
 	  <h1>Welcome to Capstone Library</h1>
 
@@ -10,6 +16,7 @@
 
 	  <%= link_to "Sign up now!", signup_path , class: "btn btn-lg btn-primary" %>
 	</div>
+
 <% else %>
 	<% if current_user.role == "user" %>
 		<h3>Borrowed books</h3>

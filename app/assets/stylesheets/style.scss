@@ -159,24 +159,34 @@ input.extend-input {
 }
 /* Sửa file */
 #logo{
-  color: red;
+  padding-top: 16px;
+  color: #fff;
 }
 #logo:hover{
-  color: blue;
+//color: blue;
 }
-.navbar-default .navbar-nav > li > a{
-  color: #000;
+.navbar-inverse .navbar-nav > li > a{
+  color: #fff;
 }
-.navbar-default .navbar-nav > li > a:hover{
-  color: red;
+.navbar-inverse .navbar-nav > li:hover{
   cursor: pointer;
+  background: rgb(97, 101, 117);
+}
+.navbar-inverse .navbar-nav > li:hover > a{
+  color: #fff;
 }
 .footer{
   margin-top: 15px;
   text-align: center;
 }
 .container .jumbotron, .container-fluid .jumbotron{
-  background: url("./images/jumbotron.jpg") no-repeat center center border-box;
+  padding: 100px 0;
+  background: url("./images/back.jpg") no-repeat center center border-box fixed;
+  background-size: 100% 100%;
+}
+.center{
+  margin: -60px -91px 0;
+  border-radius: 0!important;
 }
 .center h1,.center h2{
   color: #fff;
@@ -192,6 +202,9 @@ h4{
   display: inline-block;
 }
 h2{
+  text-align: center;
+}
+.user_info h2{
   text-align: left;
 }
 h2 span{
