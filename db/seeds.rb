@@ -55,10 +55,11 @@ end
                dewey_code: dewey_code)
 end
 
-Borrowing.create!(user_id: 3, 
-                  book_id: 4, 
-                  borrowed_time: Time.now - 28.days,
-                  due_date: Time.now - 14.days,
-                  verified: true,
-                  number_of_extension: 2,
-                  request: nil)
+5.times do |n|
+  Borrowing.create!(user_id: Faker::Number.between(1,99), 
+                    book_id: Faker::Number.between(14,28), 
+                    borrowed_time: Time.now - 28.days,
+                    due_date: Time.now - 14.days,
+                    verified: true,
+                    number_of_extension: 2,
+                    request: nil)
